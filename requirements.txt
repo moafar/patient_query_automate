@@ -1,0 +1,6 @@
+pywinauto
+python-dotenv
+pyyaml
+pandas
+openpyxl
+xlrd

@@ -1,0 +1,13 @@
+extractors:
+  observatorio_dlco:
+    query_name: "OBSERVATORIO-DLCO"
+    visit_date_from: "12/06/2026" # Opcinalmente: "yesterday"
+    clear_extra_value_fields: true
+
+  observatorio_espirometria:
+    query_name: "OBSERVATORIO-ESPIROMETRIA"
+    visit_date_from: "12/06/2026"
+
+  observatorio_volumenes_pulmonares:
+    query_name: "OBSERVATORIO-VOLUMENES PULMONARES"
+    visit_date_from: "12/06/2026"

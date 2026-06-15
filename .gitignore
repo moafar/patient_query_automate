@@ -1,0 +1,15 @@
+# Entorno virtual
+.venv/
+
+# Credenciales
+.env
+
+# Archivos exportados
+exports/
+
+# Python
+__pycache__/
+*.py[cod]
+
+# VS Code
+.vscode/
