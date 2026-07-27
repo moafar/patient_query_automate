@@ -1,0 +1,17 @@
+INSPECCIÓN DEL GRID DE CAMPOS SELECCIONADOS
+====================================================================================================
+
+Handle Win32: 196864
+Clase: 'MSFlexGridWndClass'
+Texto Win32: ''
+Rectángulo: (L1451, T320, R1748, B470)
+Controles UIA coincidentes: 1
+
+----------------------------------------------------------------------------------------------------
+CANDIDATO UIA 1
+Tipo: 'Pane'
+Clase: 'MSFlexGridWndClass'
+Nombre: ''
+Auto ID: ''
+Descendientes UIA: 5
+LegacyIAccessible: None: AttributeError: 'UIAWrapper' object has no attribute 'iface_legacy_iaccessible'

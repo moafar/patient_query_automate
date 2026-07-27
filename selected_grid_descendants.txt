@@ -1,0 +1,69 @@
+DESCENDIENTES UIA DEL GRID
+====================================================================================================
+Total: 5
+
+----------------------------------------------------------------------------------------------------
+CONTROL 1
+Nombre: 'Vertical'
+Tipo: 'ScrollBar'
+Clase: ''
+Auto ID: 'NonClientVerticalScrollBar'
+Rectángulo: (L1728, T323, R1745, B467)
+Visible: True
+Habilitado: True
+Descendientes: 4
+Textos: ['Vertical']
+Valor UIA: no disponible: 
+Nombre accesible: 'Vertical'
+----------------------------------------------------------------------------------------------------
+CONTROL 2
+Nombre: 'Line up'
+Tipo: 'Button'
+Clase: ''
+Auto ID: 'UpButton'
+Rectángulo: (L1728, T323, R1745, B340)
+Visible: True
+Habilitado: True
+Descendientes: 0
+Textos: ['Line up']
+Valor UIA: no disponible: 
+Nombre accesible: 'Line up'
+----------------------------------------------------------------------------------------------------
+CONTROL 3
+Nombre: 'Position'
+Tipo: 'Thumb'
+Clase: ''
+Auto ID: 'ScrollbarThumb'
+Rectángulo: (L1728, T340, R1745, B357)
+Visible: True
+Habilitado: True
+Descendientes: 0
+Textos: ['Position']
+Valor UIA: no disponible: 
+Nombre accesible: 'Position'
+----------------------------------------------------------------------------------------------------
+CONTROL 4
+Nombre: 'Page down'
+Tipo: 'Button'
+Clase: ''
+Auto ID: 'DownPageButton'
+Rectángulo: (L1728, T357, R1745, B450)
+Visible: True
+Habilitado: True
+Descendientes: 0
+Textos: ['Page down']
+Valor UIA: no disponible: 
+Nombre accesible: 'Page down'
+----------------------------------------------------------------------------------------------------
+CONTROL 5
+Nombre: 'Line down'
+Tipo: 'Button'
+Clase: ''
+Auto ID: 'DownButton'
+Rectángulo: (L1728, T450, R1745, B467)
+Visible: True
+Habilitado: True
+Descendientes: 0
+Textos: ['Line down']
+Valor UIA: no disponible: 
+Nombre accesible: 'Line down'

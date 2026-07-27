@@ -1,0 +1,87 @@
+Ventana padre: Consultar paciente
+Ventana modal: Seleccione campos de resultados de la consulta
+Rectángulo: (L637, T358, R1283, B720)
+
+Estructura de controles:
+
+Control Identifiers:
+
+Dialog - 'Seleccione campos de resultados de la consulta'    (L637, T358, R1283, B720)
+['Dialog', 'Seleccione campos de resultados de la consultaDialog', 'Seleccione campos de resultados de la consulta']
+child_window(title="Seleccione campos de resultados de la consulta", control_type="Window")
+   | 
+   | Pane - ''    (L925, T445, R1222, B595)
+   | ['Pane']
+   | 
+   | ComboBox - ''    (L661, T477, R782, B498)
+   | ['ComboBoxConsultar paciente', 'ComboBoxNuevo script solicitado - Google Chrome', 'ComboBox', 'ComboBoxz_explorer.py - patient_query_automate - Visual Studio Code', 'ComboBoxProgram Manager', 'ComboBoxConsultar paciente0', 'ComboBoxConsultar paciente1', 'ComboBoxNuevo script solicitado - Google Chrome0', 'ComboBoxNuevo script solicitado - Google Chrome1', 'ComboBox0', 'ComboBox1', 'ComboBoxz_explorer.py - patient_query_automate - Visual Studio Code0', 'ComboBoxz_explorer.py - patient_query_automate - Visual Studio Code1', 'ComboBoxProgram Manager0', 'ComboBoxProgram Manager1']
+   | child_window(auto_id="4", control_type="ComboBox")
+   |    | 
+   |    | Static - ''    (L3, T3, R101, B18)
+   |    | ['Static', 'Static0', 'Static1']
+   |    | 
+   |    | Button - 'Open'    (L763, T479, R780, B496)
+   |    | ['Open', 'Button', 'OpenButton', 'Open0', 'Open1', 'Button0', 'Button1', 'OpenButton0', 'OpenButton1']
+   |    | child_window(title="Open", auto_id="DropDown", control_type="Button")
+   | 
+   | ComboBox - ''    (L661, T525, R846, B546)
+   | ['ComboBoxConsultar paciente2', 'ComboBoxNuevo script solicitado - Google Chrome2', 'ComboBox2', 'ComboBoxz_explorer.py - patient_query_automate - Visual Studio Code2', 'ComboBoxProgram Manager2']
+   | child_window(auto_id="5", control_type="ComboBox")
+   |    | 
+   |    | Static - ''    (L3, T3, R165, B18)
+   |    | ['Static2']
+   |    | 
+   |    | Button - 'Open'    (L827, T527, R844, B544)
+   |    | ['Open2', 'Button2', 'OpenButton2']
+   |    | child_window(title="Open", auto_id="DropDown", control_type="Button")
+   | 
+   | Button - 'Cancelar'    (L1093, T669, R1222, B694)
+   | ['Button3', 'CancelarButton', 'Cancelar']
+   | child_window(title="Cancelar", auto_id="6", control_type="Button")
+   | 
+   | Button - 'Aceptar'    (L949, T669, R1078, B694)
+   | ['AceptarButton', 'Button4', 'Aceptar']
+   | child_window(title="Aceptar", auto_id="7", control_type="Button")
+   | 
+   | Button - '<<'    (L869, T549, R902, B574)
+   | ['Button5', '<<Button', '<<']
+   | child_window(title="<<", auto_id="8", control_type="Button")
+   | 
+   | Button - '<'    (L869, T501, R902, B526)
+   | ['<Button', 'Button6', '<']
+   | child_window(title="<", auto_id="9", control_type="Button")
+   | 
+   | Button - '>'    (L869, T469, R902, B494)
+   | ['Button7', '>Button', '>']
+   | child_window(title=">", auto_id="10", control_type="Button")
+   | 
+   | Button - '¯'    (L1229, T541, R1254, B566)
+   | ['¯Button', '¯', 'Button8']
+   | child_window(title="¯", auto_id="11", control_type="Button")
+   | 
+   | Button - '­'    (L1229, T493, R1254, B518)
+   | ['Button9', '\xadButton', '\xad']
+   | child_window(title="­", auto_id="12", control_type="Button")
+   | 
+   | TitleBar - ''    (L661, T361, R1275, B389)
+   | ['TitleBar']
+   |    | 
+   |    | Menu - 'System'    (L645, T366, R667, B388)
+   |    | ['SystemMenu', 'System', 'Menu', 'System0', 'System1']
+   |    | child_window(title="System", auto_id="MenuBar", control_type="MenuBar")
+   |    |    | 
+   |    |    | MenuItem - 'System'    (L645, T366, R667, B388)
+   |    |    | ['SystemMenuItem', 'System2', 'MenuItem']
+   |    |    | child_window(title="System", control_type="MenuItem")
+   |    | 
+   |    | Button - 'Minimize'    (L1136, T359, R1183, B389)
+   |    | ['Button10', 'MinimizeButton', 'Minimize']
+   |    | child_window(title="Minimize", control_type="Button")
+   |    | 
+   |    | Button - 'Maximize'    (L1183, T359, R1229, B389)
+   |    | ['Button11', 'MaximizeButton', 'Maximize']
+   |    | child_window(title="Maximize", control_type="Button")
+   |    | 
+   |    | Button - 'Close'    (L1229, T359, R1276, B389)
+   |    | ['CloseButton', 'Button12', 'Close']
+   |    | child_window(title="Close", control_type="Button")

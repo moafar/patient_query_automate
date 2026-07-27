@@ -1,0 +1,171 @@
+Ventana: Seleccione campos de resultados de la consulta
+Clase: ThunderRT6FormDC
+Rectángulo: (L637, T358, R1283, B720)
+
+ESTRUCTURA DE CONTROLES
+
+Control Identifiers:
+
+ThunderRT6FormDC - 'Seleccione campos de resultados de la consulta'    (L637, T358, R1283, B720)
+['ThunderRT6FormDC', 'Seleccione campos de resultados de la consulta', 'Seleccione campos de resultados de la consultaThunderRT6FormDC']
+child_window(title="Seleccione campos de resultados de la consulta", class_name="ThunderRT6FormDC")
+   | 
+   | ComboBox - ''    (L701, T661, R790, B682)
+   | ['ComboBox', 'Seleccione campos de resultados de la consultaComboBox', 'ComboBox0', 'ComboBox1', 'Seleccione campos de resultados de la consultaComboBox0', 'Seleccione campos de resultados de la consultaComboBox1']
+   | child_window(class_name="ThunderRT6ComboBox")
+   | 
+   | MSFlexGridWndClass - ''    (L925, T445, R1222, B595)
+   | ['MSFlexGridWndClass', '>MSFlexGridWndClass']
+   | child_window(class_name="MSFlexGridWndClass")
+   | 
+   | ComboBox - '0'    (L661, T565, R750, B586)
+   | ['ComboBox2', 'Seleccione campos de resultados de la consultaComboBox2']
+   | child_window(title="0", class_name="ThunderRT6ComboBox")
+   | 
+   | ComboBox - ''    (L757, T565, R846, B586)
+   | ['ComboBox3', 'Seleccione campos de resultados de la consultaComboBox3']
+   | child_window(class_name="ThunderRT6ComboBox")
+   | 
+   | ComboBox - 'Demographic'    (L661, T477, R782, B498)
+   | ['ComboBox4', 'Seleccione campos de resultados de la consultaComboBox4']
+   | child_window(title="Demographic", class_name="ThunderRT6ComboBox")
+   | 
+   | ComboBox - 'Age'    (L661, T525, R846, B546)
+   | ['ComboBox5', 'Seleccione campos de resultados de la consultaComboBox5']
+   | child_window(title="Age", class_name="ThunderRT6ComboBox")
+   | 
+   | Button - '&Cancelar'    (L1093, T669, R1222, B694)
+   | ['Button', '&CancelarButton', '&Cancelar', 'Button0', 'Button1']
+   | child_window(title="&Cancelar", class_name="ThunderRT6CommandButton")
+   | 
+   | Button - '&Aceptar'    (L949, T669, R1078, B694)
+   | ['&AceptarButton', 'Button2', '&Aceptar']
+   | child_window(title="&Aceptar", class_name="ThunderRT6CommandButton")
+   | 
+   | Button - '<<'    (L869, T549, R902, B574)
+   | ['Button3', '<<', '<<Button']
+   | child_window(title="<<", class_name="ThunderRT6CommandButton")
+   | 
+   | Button - '<'    (L869, T501, R902, B526)
+   | ['<', 'Button4', '<Button']
+   | child_window(title="<", class_name="ThunderRT6CommandButton")
+   | 
+   | Button - '>'    (L869, T469, R902, B494)
+   | ['Button5', '>', '>Button']
+   | child_window(title=">", class_name="ThunderRT6CommandButton")
+   | 
+   | Button - '¯'    (L1229, T541, R1254, B566)
+   | ['¯Button', '¯', 'Button6']
+   | child_window(title="¯", class_name="ThunderRT6CommandButton")
+   | 
+   | Button - '­'    (L1229, T493, R1254, B518)
+   | ['Button7', '\xad', '\xadButton']
+   | child_window(title="­", class_name="ThunderRT6CommandButton")
+
+
+DETALLE DE DESCENDIENTES
+
+
+CONTROL 0
+Texto: ''
+Clase: 'ThunderRT6ComboBox'
+Control ID: 1
+Rectángulo: (L701, T661, R790, B682)
+Visible: False
+Habilitado: True
+
+CONTROL 1
+Texto: ''
+Clase: 'MSFlexGridWndClass'
+Control ID: 0
+Rectángulo: (L925, T445, R1222, B595)
+Visible: True
+Habilitado: True
+
+CONTROL 2
+Texto: '0'
+Clase: 'ThunderRT6ComboBox'
+Control ID: 2
+Rectángulo: (L661, T565, R750, B586)
+Visible: False
+Habilitado: True
+
+CONTROL 3
+Texto: ''
+Clase: 'ThunderRT6ComboBox'
+Control ID: 3
+Rectángulo: (L757, T565, R846, B586)
+Visible: False
+Habilitado: True
+
+CONTROL 4
+Texto: 'Demographic'
+Clase: 'ThunderRT6ComboBox'
+Control ID: 4
+Rectángulo: (L661, T477, R782, B498)
+Visible: True
+Habilitado: True
+
+CONTROL 5
+Texto: 'Age'
+Clase: 'ThunderRT6ComboBox'
+Control ID: 5
+Rectángulo: (L661, T525, R846, B546)
+Visible: True
+Habilitado: True
+
+CONTROL 6
+Texto: '&Cancelar'
+Clase: 'ThunderRT6CommandButton'
+Control ID: 6
+Rectángulo: (L1093, T669, R1222, B694)
+Visible: True
+Habilitado: True
+
+CONTROL 7
+Texto: '&Aceptar'
+Clase: 'ThunderRT6CommandButton'
+Control ID: 7
+Rectángulo: (L949, T669, R1078, B694)
+Visible: True
+Habilitado: False
+
+CONTROL 8
+Texto: '<<'
+Clase: 'ThunderRT6CommandButton'
+Control ID: 8
+Rectángulo: (L869, T549, R902, B574)
+Visible: True
+Habilitado: False
+
+CONTROL 9
+Texto: '<'
+Clase: 'ThunderRT6CommandButton'
+Control ID: 9
+Rectángulo: (L869, T501, R902, B526)
+Visible: True
+Habilitado: False
+
+CONTROL 10
+Texto: '>'
+Clase: 'ThunderRT6CommandButton'
+Control ID: 10
+Rectángulo: (L869, T469, R902, B494)
+Visible: True
+Habilitado: True
+
+CONTROL 11
+Texto: '¯'
+Clase: 'ThunderRT6CommandButton'
+Control ID: 11
+Rectángulo: (L1229, T541, R1254, B566)
+Visible: True
+Habilitado: False
+
+CONTROL 12
+Texto: '\xad'
+Clase: 'ThunderRT6CommandButton'
+Control ID: 12
+Rectángulo: (L1229, T493, R1254, B518)
+Visible: True
+Habilitado: False

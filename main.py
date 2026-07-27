@@ -132,23 +132,28 @@ def select_query(window, query_name):
 
 def get_value_edits(window):
     """
-    Devuelve los campos Edit de la columna Valores.
-
-    Se excluye el Edit interno del combo superior de Consulta
-    usando posición horizontal. En esta ventana, los campos
-    de Valores están a la derecha, con left > 1000.
+    Localiza los campos Edit de la columna Valores sin depender
+    de coordenadas absolutas ni de la resolución de pantalla.
     """
+    edits = window.descendants(control_type="Edit")
+
+    if not edits:
+        return []
+
+    # La columna Valores es la columna de campos Edit situada
+    # más a la derecha dentro de la ventana.
+    max_left = max(edit.rectangle().left for edit in edits)
+
     value_edits = [
-        edit for edit in window.descendants(control_type="Edit")
-        if edit.rectangle().left > 1000
+        edit
+        for edit in edits
+        if abs(edit.rectangle().left - max_left) <= 30
     ]
 
-    value_edits = sorted(
+    return sorted(
         value_edits,
-        key=lambda edit: (edit.rectangle().top, edit.rectangle().left)
+        key=lambda edit: edit.rectangle().top,
     )
-
-    return value_edits
 
 
 def configure_query(extractor_config):

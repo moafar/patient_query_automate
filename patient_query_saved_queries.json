@@ -1,0 +1,23 @@
+{
+  "source": "Patient Query",
+  "captured_at": "2026-06-24T11:37:17",
+  "query_count": 12,
+  "queries": [],
+  "errors": [
+    {
+      "query_name": "__OBS_test",
+      "error_type": "RuntimeError",
+      "error": "No se pudo copiar el contenido del panel 'Campos seleccionados'."
+    },
+    {
+      "query_name": "01/05/2026",
+      "error_type": "RuntimeError",
+      "error": "No se pudo copiar el contenido del panel 'Campos seleccionados'."
+    },
+    {
+      "query_name": "Asthma Patients",
+      "error_type": "RuntimeError",
+      "error": "No se pudo copiar el contenido del panel 'Campos seleccionados'."
+    }
+  ]
+}

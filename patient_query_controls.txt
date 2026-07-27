@@ -1,0 +1,395 @@
+Ventana encontrada: Consultar paciente
+
+Estructura de controles:
+
+Control Identifiers:
+
+Dialog - 'Consultar paciente'    (L607, T307, R1313, B772)
+['Consultar paciente', 'Consultar pacienteDialog', 'Dialog', 'Dialog0', 'Dialog1']
+child_window(title="Consultar paciente", control_type="Window")
+   | 
+   | Dialog - 'Seleccione campos de resultados de la consulta'    (L637, T358, R1283, B720)
+   | ['Seleccione campos de resultados de la consulta', 'Dialog2', 'Seleccione campos de resultados de la consultaDialog']
+   | child_window(title="Seleccione campos de resultados de la consulta", control_type="Window")
+   |    | 
+   |    | Pane - ''    (L925, T445, R1222, B595)
+   |    | ['Pane']
+   |    | 
+   |    | ComboBox - ''    (L661, T477, R782, B498)
+   |    | ['ComboBoxProgram Manager', 'ComboBox', 'ComboBoxz_explorer.py - patient_query_automate - Visual Studio Code', 'ComboBoxConsultar paciente', 'ComboBoxProgram Manager0', 'ComboBoxProgram Manager1', 'ComboBox0', 'ComboBox1', 'ComboBoxz_explorer.py - patient_query_automate - Visual Studio Code0', 'ComboBoxz_explorer.py - patient_query_automate - Visual Studio Code1', 'ComboBoxConsultar paciente0', 'ComboBoxConsultar paciente1']
+   |    | child_window(auto_id="4", control_type="ComboBox")
+   |    |    | 
+   |    |    | Static - ''    (L3, T3, R101, B18)
+   |    |    | ['Static', 'Static0', 'Static1']
+   |    |    | 
+   |    |    | Button - 'Open'    (L763, T479, R780, B496)
+   |    |    | ['Open', 'OpenButton', 'Button', 'Open0', 'Open1', 'OpenButton0', 'OpenButton1', 'Button0', 'Button1']
+   |    |    | child_window(title="Open", auto_id="DropDown", control_type="Button")
+   |    | 
+   |    | ComboBox - ''    (L661, T525, R846, B546)
+   |    | ['ComboBoxProgram Manager2', 'ComboBox2', 'ComboBoxz_explorer.py - patient_query_automate - Visual Studio Code2', 'ComboBoxConsultar paciente2']
+   |    | child_window(auto_id="5", control_type="ComboBox")
+   |    |    | 
+   |    |    | Static - ''    (L3, T3, R165, B18)
+   |    |    | ['Static2']
+   |    |    | 
+   |    |    | Button - 'Open'    (L827, T527, R844, B544)
+   |    |    | ['Open2', 'OpenButton2', 'Button2']
+   |    |    | child_window(title="Open", auto_id="DropDown", control_type="Button")
+   |    | 
+   |    | Button - 'Cancelar'    (L1093, T669, R1222, B694)
+   |    | ['Cancelar', 'Button3', 'CancelarButton']
+   |    | child_window(title="Cancelar", auto_id="6", control_type="Button")
+   |    | 
+   |    | Button - 'Aceptar'    (L949, T669, R1078, B694)
+   |    | ['AceptarButton', 'Button4', 'Aceptar']
+   |    | child_window(title="Aceptar", auto_id="7", control_type="Button")
+   |    | 
+   |    | Button - '<<'    (L869, T549, R902, B574)
+   |    | ['<<Button', 'Button5', '<<']
+   |    | child_window(title="<<", auto_id="8", control_type="Button")
+   |    | 
+   |    | Button - '<'    (L869, T501, R902, B526)
+   |    | ['Button6', '<Button', '<']
+   |    | child_window(title="<", auto_id="9", control_type="Button")
+   |    | 
+   |    | Button - '>'    (L869, T469, R902, B494)
+   |    | ['Button7', '>Button', '>']
+   |    | child_window(title=">", auto_id="10", control_type="Button")
+   |    | 
+   |    | Button - '¯'    (L1229, T541, R1254, B566)
+   |    | ['¯', 'Button8', '¯Button']
+   |    | child_window(title="¯", auto_id="11", control_type="Button")
+   |    | 
+   |    | Button - '­'    (L1229, T493, R1254, B518)
+   |    | ['\xad', 'Button9', '\xadButton']
+   |    | child_window(title="­", auto_id="12", control_type="Button")
+   |    | 
+   |    | TitleBar - ''    (L661, T361, R1275, B389)
+   |    | ['TitleBar', 'TitleBar0', 'TitleBar1']
+   |    |    | 
+   |    |    | Menu - 'System'    (L645, T366, R667, B388)
+   |    |    | ['SystemMenu', 'Menu', 'System', 'System0', 'System1', 'SystemMenu0', 'SystemMenu1', 'Menu0', 'Menu1']
+   |    |    | child_window(title="System", auto_id="MenuBar", control_type="MenuBar")
+   |    |    |    | 
+   |    |    |    | MenuItem - 'System'    (L645, T366, R667, B388)
+   |    |    |    | ['System2', 'MenuItem', 'SystemMenuItem', 'MenuItem0', 'MenuItem1', 'SystemMenuItem0', 'SystemMenuItem1']
+   |    |    |    | child_window(title="System", control_type="MenuItem")
+   |    |    | 
+   |    |    | Button - 'Minimize'    (L1136, T359, R1183, B389)
+   |    |    | ['Minimize', 'Button10', 'MinimizeButton', 'Minimize0', 'Minimize1', 'MinimizeButton0', 'MinimizeButton1']
+   |    |    | child_window(title="Minimize", control_type="Button")
+   |    |    | 
+   |    |    | Button - 'Maximize'    (L1183, T359, R1229, B389)
+   |    |    | ['Button11', 'MaximizeButton', 'Maximize', 'MaximizeButton0', 'MaximizeButton1', 'Maximize0', 'Maximize1']
+   |    |    | child_window(title="Maximize", control_type="Button")
+   |    |    | 
+   |    |    | Button - 'Close'    (L1229, T359, R1276, B389)
+   |    |    | ['CloseButton', 'Close', 'Button12', 'CloseButton0', 'CloseButton1', 'Close0', 'Close1']
+   |    |    | child_window(title="Close", control_type="Button")
+   | 
+   | GroupBox - 'Consulta'    (L655, T346, R1280, B411)
+   | ['ConsultaGroupBox', 'Consulta', 'GroupBox', 'GroupBox0', 'GroupBox1']
+   | child_window(title="Consulta", auto_id="1", control_type="Group")
+   |    | 
+   |    | Button - 'Suprimir'    (L1135, T370, R1264, B395)
+   |    | ['SuprimirButton', 'Button13', 'Suprimir']
+   |    | child_window(title="Suprimir", auto_id="2", control_type="Button")
+   |    | 
+   |    | Button - 'Guardar'    (L999, T370, R1128, B395)
+   |    | ['Guardar', 'GuardarButton', 'Button14']
+   |    | child_window(title="Guardar", auto_id="3", control_type="Button")
+   |    | 
+   |    | Button - 'Nuevo'    (L863, T370, R992, B395)
+   |    | ['Nuevo', 'Button15', 'NuevoButton']
+   |    | child_window(title="Nuevo", auto_id="4", control_type="Button")
+   |    | 
+   |    | ComboBox - ''    (L671, T370, R856, B391)
+   |    | ['ComboBox3']
+   |    | child_window(auto_id="5", control_type="ComboBox")
+   |    |    | 
+   |    |    | Edit - ''    (L674, T373, R836, B388)
+   |    |    | ['Edit', 'Edit0', 'Edit1']
+   |    |    | child_window(auto_id="1001", control_type="Edit")
+   |    |    | 
+   |    |    | Button - 'Open'    (L837, T372, R854, B389)
+   |    |    | ['Open3', 'OpenButton3', 'Button16']
+   |    |    | child_window(title="Open", auto_id="DropDown", control_type="Button")
+   | 
+   | Button - 'Ayuda'    (L1135, T690, R1264, B715)
+   | ['Ayuda', 'Button17', 'AyudaButton']
+   | child_window(title="Ayuda", auto_id="7", control_type="Button")
+   | 
+   | GroupBox - 'Resultados de la consulta'    (L655, T674, R1112, B755)
+   | ['Resultados de la consultaGroupBox', 'Resultados de la consulta', 'GroupBox2', 'Resultados de la consulta0', 'Resultados de la consulta1']
+   | child_window(title="Resultados de la consulta", auto_id="20", control_type="Group")
+   |    | 
+   |    | Button - 'Configuración de la impresora'    (L671, T722, R800, B747)
+   |    | ['Button18', 'Configuración de la impresora', 'Configuración de la impresoraButton']
+   |    | child_window(title="Configuración de la impresora", auto_id="21", control_type="Button")
+   |    | 
+   |    | Button - 'Exportar'    (L943, T690, R1072, B715)
+   |    | ['ExportarButton', 'Button19', 'Exportar']
+   |    | child_window(title="Exportar", auto_id="22", control_type="Button")
+   |    | 
+   |    | Button - 'Vista Previa'    (L807, T690, R936, B715)
+   |    | ['Button20', 'Vista Previa', 'Vista PreviaButton']
+   |    | child_window(title="Vista Previa", auto_id="23", control_type="Button")
+   |    | 
+   |    | Button - 'Imprimir'    (L807, T722, R936, B747)
+   |    | ['Imprimir', 'Button21', 'ImprimirButton']
+   |    | child_window(title="Imprimir", auto_id="24", control_type="Button")
+   |    | 
+   |    | Button - 'Seleccionar Campos'    (L671, T690, R800, B715)
+   |    | ['Button22', 'Seleccionar CamposButton', 'Seleccionar Campos']
+   |    | child_window(title="Seleccionar Campos", auto_id="25", control_type="Button")
+   | 
+   | ComboBox - 'Resultados de la consulta'    (L671, T442, R792, B463)
+   | ['Resultados de la consultaComboBox', 'ComboBox4', 'Resultados de la consulta2']
+   | child_window(title="Resultados de la consulta", auto_id="26", control_type="ComboBox")
+   |    | 
+   |    | Static - 'Resultados de la consulta'    (L3, T3, R101, B18)
+   |    | ['Resultados de la consultaStatic', 'Static3', 'Resultados de la consulta3']
+   |    | child_window(title="Resultados de la consulta", control_type="Text")
+   |    | 
+   |    | Button - 'Open'    (L773, T444, R790, B461)
+   |    | ['Open4', 'OpenButton4', 'Button23']
+   |    | child_window(title="Open", auto_id="DropDown", control_type="Button")
+   | 
+   | ComboBox - ''    (L671, T482, R792, B503)
+   | ['ComboBox5']
+   | child_window(auto_id="27", control_type="ComboBox")
+   |    | 
+   |    | Static - ''    (L3, T3, R101, B18)
+   |    | ['Static4']
+   |    | 
+   |    | Button - 'Open'    (L773, T484, R790, B501)
+   |    | ['Open5', 'OpenButton5', 'Button24']
+   |    | child_window(title="Open", auto_id="DropDown", control_type="Button")
+   | 
+   | ComboBox - ''    (L671, T522, R792, B543)
+   | ['ComboBox6']
+   | child_window(auto_id="28", control_type="ComboBox")
+   |    | 
+   |    | Static - ''    (L3, T3, R101, B18)
+   |    | ['Static5']
+   |    | 
+   |    | Button - 'Open'    (L773, T524, R790, B541)
+   |    | ['Open6', 'OpenButton6', 'Button25']
+   |    | child_window(title="Open", auto_id="DropDown", control_type="Button")
+   | 
+   | ComboBox - ''    (L671, T562, R792, B583)
+   | ['ComboBox7']
+   | child_window(auto_id="29", control_type="ComboBox")
+   |    | 
+   |    | Static - ''    (L3, T3, R101, B18)
+   |    | ['Static6']
+   |    | 
+   |    | Button - 'Open'    (L773, T564, R790, B581)
+   |    | ['Open7', 'OpenButton7', 'Button26']
+   |    | child_window(title="Open", auto_id="DropDown", control_type="Button")
+   | 
+   | ComboBox - ''    (L671, T602, R792, B623)
+   | ['ComboBox8']
+   | child_window(auto_id="30", control_type="ComboBox")
+   |    | 
+   |    | Static - ''    (L3, T3, R101, B18)
+   |    | ['Static7']
+   |    | 
+   |    | Button - 'Open'    (L773, T604, R790, B621)
+   |    | ['Open8', 'OpenButton8', 'Button27']
+   |    | child_window(title="Open", auto_id="DropDown", control_type="Button")
+   | 
+   | ComboBox - ''    (L671, T642, R792, B663)
+   | ['ComboBox9']
+   | child_window(auto_id="31", control_type="ComboBox")
+   |    | 
+   |    | Static - ''    (L3, T3, R101, B18)
+   |    | ['Static8']
+   |    | 
+   |    | Button - 'Open'    (L773, T644, R790, B661)
+   |    | ['Open9', 'OpenButton9', 'Button28']
+   |    | child_window(title="Open", auto_id="DropDown", control_type="Button")
+   | 
+   | ComboBox - ''    (L807, T442, R992, B463)
+   | ['ComboBox10']
+   | child_window(auto_id="32", control_type="ComboBox")
+   |    | 
+   |    | Static - ''    (L3, T3, R165, B18)
+   |    | ['Static9']
+   |    | 
+   |    | Button - 'Open'    (L973, T444, R990, B461)
+   |    | ['Open10', 'OpenButton10', 'Button29']
+   |    | child_window(title="Open", auto_id="DropDown", control_type="Button")
+   | 
+   | ComboBox - ''    (L807, T482, R992, B503)
+   | ['ComboBox11']
+   | child_window(auto_id="33", control_type="ComboBox")
+   |    | 
+   |    | Static - ''    (L3, T3, R165, B18)
+   |    | ['Static10']
+   |    | 
+   |    | Button - 'Open'    (L973, T484, R990, B501)
+   |    | ['Open11', 'OpenButton11', 'Button30']
+   |    | child_window(title="Open", auto_id="DropDown", control_type="Button")
+   | 
+   | ComboBox - ''    (L807, T522, R992, B543)
+   | ['ComboBox12']
+   | child_window(auto_id="34", control_type="ComboBox")
+   |    | 
+   |    | Static - ''    (L3, T3, R165, B18)
+   |    | ['Static11']
+   |    | 
+   |    | Button - 'Open'    (L973, T524, R990, B541)
+   |    | ['Open12', 'OpenButton12', 'Button31']
+   |    | child_window(title="Open", auto_id="DropDown", control_type="Button")
+   | 
+   | ComboBox - ''    (L807, T562, R992, B583)
+   | ['ComboBox13']
+   | child_window(auto_id="35", control_type="ComboBox")
+   |    | 
+   |    | Static - ''    (L3, T3, R165, B18)
+   |    | ['Static12']
+   |    | 
+   |    | Button - 'Open'    (L973, T564, R990, B581)
+   |    | ['Open13', 'OpenButton13', 'Button32']
+   |    | child_window(title="Open", auto_id="DropDown", control_type="Button")
+   | 
+   | ComboBox - ''    (L807, T602, R992, B623)
+   | ['ComboBox14']
+   | child_window(auto_id="36", control_type="ComboBox")
+   |    | 
+   |    | Static - ''    (L3, T3, R165, B18)
+   |    | ['Static13']
+   |    | 
+   |    | Button - 'Open'    (L973, T604, R990, B621)
+   |    | ['Open14', 'OpenButton14', 'Button33']
+   |    | child_window(title="Open", auto_id="DropDown", control_type="Button")
+   | 
+   | ComboBox - ''    (L807, T642, R992, B663)
+   | ['ComboBox15']
+   | child_window(auto_id="37", control_type="ComboBox")
+   |    | 
+   |    | Static - ''    (L3, T3, R165, B18)
+   |    | ['Static14']
+   |    | 
+   |    | Button - 'Open'    (L973, T644, R990, B661)
+   |    | ['Open15', 'OpenButton15', 'Button34']
+   |    | child_window(title="Open", auto_id="DropDown", control_type="Button")
+   | 
+   | ComboBox - ''    (L1007, T442, R1128, B463)
+   | ['ComboBox16']
+   | child_window(auto_id="38", control_type="ComboBox")
+   |    | 
+   |    | Static - ''    (L3, T3, R101, B18)
+   |    | ['Static15']
+   |    | 
+   |    | Button - 'Open'    (L1109, T444, R1126, B461)
+   |    | ['Open16', 'OpenButton16', 'Button35']
+   |    | child_window(title="Open", auto_id="DropDown", control_type="Button")
+   | 
+   | ComboBox - ''    (L1007, T482, R1128, B503)
+   | ['ComboBox17']
+   | child_window(auto_id="39", control_type="ComboBox")
+   |    | 
+   |    | Static - ''    (L3, T3, R101, B18)
+   |    | ['Static16']
+   |    | 
+   |    | Button - 'Open'    (L1109, T484, R1126, B501)
+   |    | ['Open17', 'OpenButton17', 'Button36']
+   |    | child_window(title="Open", auto_id="DropDown", control_type="Button")
+   | 
+   | ComboBox - ''    (L1007, T522, R1128, B543)
+   | ['ComboBox18']
+   | child_window(auto_id="40", control_type="ComboBox")
+   |    | 
+   |    | Static - ''    (L3, T3, R101, B18)
+   |    | ['Static17']
+   |    | 
+   |    | Button - 'Open'    (L1109, T524, R1126, B541)
+   |    | ['Open18', 'OpenButton18', 'Button37']
+   |    | child_window(title="Open", auto_id="DropDown", control_type="Button")
+   | 
+   | ComboBox - ''    (L1007, T562, R1128, B583)
+   | ['ComboBox19']
+   | child_window(auto_id="41", control_type="ComboBox")
+   |    | 
+   |    | Static - ''    (L3, T3, R101, B18)
+   |    | ['Static18']
+   |    | 
+   |    | Button - 'Open'    (L1109, T564, R1126, B581)
+   |    | ['Open19', 'OpenButton19', 'Button38']
+   |    | child_window(title="Open", auto_id="DropDown", control_type="Button")
+   | 
+   | ComboBox - ''    (L1007, T602, R1128, B623)
+   | ['ComboBox20']
+   | child_window(auto_id="42", control_type="ComboBox")
+   |    | 
+   |    | Static - ''    (L3, T3, R101, B18)
+   |    | ['Static19']
+   |    | 
+   |    | Button - 'Open'    (L1109, T604, R1126, B621)
+   |    | ['Open20', 'OpenButton20', 'Button39']
+   |    | child_window(title="Open", auto_id="DropDown", control_type="Button")
+   | 
+   | ComboBox - ''    (L1007, T642, R1128, B663)
+   | ['ComboBox21']
+   | child_window(auto_id="43", control_type="ComboBox")
+   |    | 
+   |    | Static - ''    (L3, T3, R101, B18)
+   |    | ['Static20']
+   |    | 
+   |    | Button - 'Open'    (L1109, T644, R1126, B661)
+   |    | ['Open21', 'OpenButton21', 'Button40']
+   |    | child_window(title="Open", auto_id="DropDown", control_type="Button")
+   | 
+   | Edit - ''    (L1143, T442, R1264, B461)
+   | ['Edit2']
+   | child_window(auto_id="44", control_type="Edit")
+   | 
+   | Edit - ''    (L1143, T482, R1264, B501)
+   | ['Edit3']
+   | child_window(auto_id="45", control_type="Edit")
+   | 
+   | Edit - ''    (L1143, T522, R1264, B541)
+   | ['Edit4']
+   | child_window(auto_id="46", control_type="Edit")
+   | 
+   | Edit - ''    (L1143, T562, R1264, B581)
+   | ['Edit5']
+   | child_window(auto_id="47", control_type="Edit")
+   | 
+   | Edit - ''    (L1143, T602, R1264, B621)
+   | ['Edit6']
+   | child_window(auto_id="48", control_type="Edit")
+   | 
+   | Edit - ''    (L1143, T642, R1264, B661)
+   | ['Edit7']
+   | child_window(auto_id="49", control_type="Edit")
+   | 
+   | Button - 'Salir'    (L1135, T722, R1264, B747)
+   | ['Button41', 'Salir', 'SalirButton']
+   | child_window(title="Salir", auto_id="50", control_type="Button")
+   | 
+   | TitleBar - ''    (L631, T310, R1305, B338)
+   | ['TitleBar2']
+   |    | 
+   |    | Menu - 'System'    (L615, T315, R637, B337)
+   |    | ['SystemMenu2', 'Menu2', 'System3']
+   |    | child_window(title="System", auto_id="MenuBar", control_type="MenuBar")
+   |    |    | 
+   |    |    | MenuItem - 'System'    (L615, T315, R637, B337)
+   |    |    | ['System4', 'MenuItem2', 'SystemMenuItem2']
+   |    |    | child_window(title="System", control_type="MenuItem")
+   |    | 
+   |    | Button - 'Minimize'    (L1166, T308, R1213, B338)
+   |    | ['Minimize2', 'Button42', 'MinimizeButton2']
+   |    | child_window(title="Minimize", control_type="Button")
+   |    | 
+   |    | Button - 'Maximize'    (L1213, T308, R1259, B338)
+   |    | ['Button43', 'MaximizeButton2', 'Maximize2']
+   |    | child_window(title="Maximize", control_type="Button")
+   |    | 
+   |    | Button - 'Close'    (L1259, T308, R1306, B338)
+   |    | ['CloseButton2', 'Close2', 'Button44']
+   |    | child_window(title="Close", control_type="Button")

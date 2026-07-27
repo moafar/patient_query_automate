@@ -1,0 +1,195 @@
+Ventana: Consultar paciente
+Clase: ThunderRT6FormDC
+====================================================================================================
+
+CONTROL 27
+Control ID: 26
+Texto: 'Demographic'
+Clase: 'ThunderRT6ComboBox'
+Visible: True
+Habilitado: True
+Rectángulo: (L1197, T317, R1318, B338)
+
+CONTROL 28
+Control ID: 27
+Texto: '(None)'
+Clase: 'ThunderRT6ComboBox'
+Visible: True
+Habilitado: True
+Rectángulo: (L1197, T357, R1318, B378)
+
+CONTROL 29
+Control ID: 28
+Texto: '(None)'
+Clase: 'ThunderRT6ComboBox'
+Visible: True
+Habilitado: True
+Rectángulo: (L1197, T397, R1318, B418)
+
+CONTROL 30
+Control ID: 29
+Texto: '(None)'
+Clase: 'ThunderRT6ComboBox'
+Visible: True
+Habilitado: True
+Rectángulo: (L1197, T437, R1318, B458)
+
+CONTROL 31
+Control ID: 30
+Texto: '(None)'
+Clase: 'ThunderRT6ComboBox'
+Visible: True
+Habilitado: True
+Rectángulo: (L1197, T477, R1318, B498)
+
+CONTROL 32
+Control ID: 31
+Texto: '(None)'
+Clase: 'ThunderRT6ComboBox'
+Visible: True
+Habilitado: True
+Rectángulo: (L1197, T517, R1318, B538)
+
+CONTROL 33
+Control ID: 32
+Texto: 'Visit Date'
+Clase: 'ThunderRT6ComboBox'
+Visible: True
+Habilitado: True
+Rectángulo: (L1333, T317, R1518, B338)
+
+CONTROL 34
+Control ID: 33
+Texto: ''
+Clase: 'ThunderRT6ComboBox'
+Visible: True
+Habilitado: True
+Rectángulo: (L1333, T357, R1518, B378)
+
+CONTROL 35
+Control ID: 34
+Texto: ''
+Clase: 'ThunderRT6ComboBox'
+Visible: True
+Habilitado: True
+Rectángulo: (L1333, T397, R1518, B418)
+
+CONTROL 36
+Control ID: 35
+Texto: ''
+Clase: 'ThunderRT6ComboBox'
+Visible: True
+Habilitado: True
+Rectángulo: (L1333, T437, R1518, B458)
+
+CONTROL 37
+Control ID: 36
+Texto: ''
+Clase: 'ThunderRT6ComboBox'
+Visible: True
+Habilitado: True
+Rectángulo: (L1333, T477, R1518, B498)
+
+CONTROL 38
+Control ID: 37
+Texto: ''
+Clase: 'ThunderRT6ComboBox'
+Visible: True
+Habilitado: True
+Rectángulo: (L1333, T517, R1518, B538)
+
+CONTROL 39
+Control ID: 38
+Texto: '>='
+Clase: 'ThunderRT6ComboBox'
+Visible: True
+Habilitado: True
+Rectángulo: (L1533, T317, R1654, B338)
+
+CONTROL 40
+Control ID: 39
+Texto: ''
+Clase: 'ThunderRT6ComboBox'
+Visible: True
+Habilitado: True
+Rectángulo: (L1533, T357, R1654, B378)
+
+CONTROL 41
+Control ID: 40
+Texto: ''
+Clase: 'ThunderRT6ComboBox'
+Visible: True
+Habilitado: True
+Rectángulo: (L1533, T397, R1654, B418)
+
+CONTROL 42
+Control ID: 41
+Texto: ''
+Clase: 'ThunderRT6ComboBox'
+Visible: True
+Habilitado: True
+Rectángulo: (L1533, T437, R1654, B458)
+
+CONTROL 43
+Control ID: 42
+Texto: ''
+Clase: 'ThunderRT6ComboBox'
+Visible: True
+Habilitado: True
+Rectángulo: (L1533, T477, R1654, B498)
+
+CONTROL 44
+Control ID: 43
+Texto: ''
+Clase: 'ThunderRT6ComboBox'
+Visible: True
+Habilitado: True
+Rectángulo: (L1533, T517, R1654, B538)
+
+CONTROL 45
+Control ID: 44
+Texto: '10/06/2026'
+Clase: 'ThunderRT6TextBox'
+Visible: False
+Habilitado: True
+Rectángulo: (L1669, T317, R1790, B336)
+
+CONTROL 46
+Control ID: 45
+Texto: ''
+Clase: 'ThunderRT6TextBox'
+Visible: True
+Habilitado: True
+Rectángulo: (L1669, T357, R1790, B376)
+
+CONTROL 47
+Control ID: 46
+Texto: ''
+Clase: 'ThunderRT6TextBox'
+Visible: True
+Habilitado: True
+Rectángulo: (L1669, T397, R1790, B416)
+
+CONTROL 48
+Control ID: 47
+Texto: ''
+Clase: 'ThunderRT6TextBox'
+Visible: True
+Habilitado: True
+Rectángulo: (L1669, T437, R1790, B456)
+
+CONTROL 49
+Control ID: 48
+Texto: ''
+Clase: 'ThunderRT6TextBox'
+Visible: True
+Habilitado: True
+Rectángulo: (L1669, T477, R1790, B496)
+
+CONTROL 50
+Control ID: 49
+Texto: ''
+Clase: 'ThunderRT6TextBox'
+Visible: True
+Habilitado: True
+Rectángulo: (L1669, T517, R1790, B536)
