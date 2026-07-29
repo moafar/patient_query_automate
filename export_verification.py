@@ -1,5 +1,6 @@
 import time
 from pathlib import Path
+import zipfile
 
 
 class ExportVerificationError(RuntimeError):
@@ -36,11 +37,27 @@ def wait_for_export_file(
 
             if size > 0 and consecutive_stable_checks >= stable_checks:
                 try:
-                    with path.open("rb") as exported_file:
-                        exported_file.read(1)
-                except OSError as exc:
+                    if not zipfile.is_zipfile(path):
+                        raise ExportVerificationError(
+                            f"El archivo exportado no tiene contenido XLSX/OOXML válido: {path}"
+                        )
+
+                    with zipfile.ZipFile(path, "r") as workbook:
+                        required_entries = {
+                            "[Content_Types].xml",
+                            "xl/workbook.xml",
+                        }
+                        missing_entries = required_entries.difference(workbook.namelist())
+
+                        if missing_entries:
+                            raise ExportVerificationError(
+                                "El archivo exportado no contiene la estructura mínima "
+                                f"de un libro XLSX: {sorted(missing_entries)}"
+                            )
+
+                except (OSError, zipfile.BadZipFile) as exc:
                     raise ExportVerificationError(
-                        f"El archivo exportado no puede abrirse: {path}"
+                        f"El archivo exportado no puede validarse como XLSX/OOXML: {path}"
                     ) from exc
 
                 return size

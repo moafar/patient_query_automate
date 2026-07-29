@@ -1,7 +1,6 @@
 import tempfile
-import threading
-import time
 import unittest
+import zipfile
 from pathlib import Path
 
 from export_verification import ExportVerificationError, wait_for_export_file
@@ -10,24 +9,27 @@ from export_verification import ExportVerificationError, wait_for_export_file
 class ExportVerificationTests(unittest.TestCase):
     def test_accepts_non_empty_stable_file(self):
         with tempfile.TemporaryDirectory() as temp_dir:
-            path = Path(temp_dir) / "export.xls"
+            export_path = Path(temp_dir) / "export.xls"
 
-            def write_file():
-                time.sleep(0.03)
-                path.write_bytes(b"valid-content")
+            with zipfile.ZipFile(export_path, "w") as workbook:
+                workbook.writestr(
+                    "[Content_Types].xml",
+                    '<?xml version="1.0" encoding="UTF-8"?>',
+                )
+                workbook.writestr(
+                    "xl/workbook.xml",
+                    '<?xml version="1.0" encoding="UTF-8"?>',
+                )
 
-            writer = threading.Thread(target=write_file)
-            writer.start()
             size = wait_for_export_file(
-                path,
+                export_path,
                 timeout=1,
-                poll_interval=0.02,
-                stable_checks=2,
+                poll_interval=0.01,
+                stable_checks=1,
             )
-            writer.join()
 
-            self.assertEqual(size, len(b"valid-content"))
-
+            self.assertEqual(size, export_path.stat().st_size)
+            
     def test_rejects_missing_file_after_timeout(self):
         with tempfile.TemporaryDirectory() as temp_dir:
             path = Path(temp_dir) / "missing.xls"

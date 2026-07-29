@@ -44,7 +44,7 @@ def get_extractor_config(extractor_name):
 
 
 def yesterday_str():
-    return (datetime.now() - timedelta(days=1)).strftime("%d/%m/%Y")
+    return (datetime.now() - timedelta(days=1)).strftime("%m/%d/%Y")
 
 
 def timestamp_str():
@@ -175,10 +175,26 @@ def get_value_edits(window):
     ]
     return sorted(value_edits, key=lambda edit: edit.rectangle().top)
 
+def set_visit_date_operator(operator: str, logger) -> None:
+    window = Desktop(backend="win32").window(title="Consultar paciente")
+
+    operator_combo = window.child_window(
+        control_id=38,
+        class_name="ThunderRT6ComboBox",
+    )
+
+    operator_combo.select(operator)
+
+    logger.info(
+        "Operador de fecha configurado; operator=%s",
+        operator,
+        extra={"phase": "query_configuration"},
+    )
 
 def configure_query(extractor_config, logger: logging.LoggerAdapter):
     query_name = extractor_config["query_name"]
     visit_date_from = extractor_config.get("visit_date_from", "yesterday")
+    visit_date_operator = extractor_config.get("visit_date_operator")
 
     if visit_date_from == "yesterday":
         visit_date_from = yesterday_str()
@@ -192,6 +208,8 @@ def configure_query(extractor_config, logger: logging.LoggerAdapter):
 
     window = get_query_window()
     select_query(window, query_name, logger)
+    if visit_date_operator:
+        set_visit_date_operator(visit_date_operator, logger)
     value_edits = get_value_edits(window)
 
     if not value_edits:
@@ -265,7 +283,6 @@ def export_query(extractor_config, logger: logging.LoggerAdapter):
         raise FileExistsError(f"Ya existe el archivo de exportación: {full_path}")
 
     set_save_dialog_filename(save_window, full_path)
-    set_save_dialog_file_type_excel(save_window, logger)
     confirm_save_dialog(save_window)
 
     logger.info(
