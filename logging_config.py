@@ -10,7 +10,7 @@ LOG_DIR = Path(r"C:\patient_query_automate\logs")
 
 @dataclass(frozen=True)
 class LoggingContext:
-    logger: logging.LoggerAdapter
+    logger: logging.Logger
     run_id: str
     log_path: Path
 
@@ -33,6 +33,19 @@ def sanitize_filename(value: str) -> str:
     return sanitized or "extractor"
 
 
+def unique_log_path(log_dir: Path, extractor: str, timestamp: str) -> Path:
+    base_path = log_dir / f"{extractor}_{timestamp}.log"
+    if not base_path.exists():
+        return base_path
+
+    counter = 1
+    while True:
+        candidate = log_dir / f"{extractor}_{timestamp}_{counter:02d}.log"
+        if not candidate.exists():
+            return candidate
+        counter += 1
+
+
 def setup_logging(
     extractor: str,
     log_dir: Path = LOG_DIR,
@@ -40,17 +53,18 @@ def setup_logging(
 ) -> LoggingContext:
     started_at = now or datetime.now()
     timestamp = started_at.strftime("%Y%m%d_%H%M%S")
-    run_id = started_at.strftime("%Y%m%dT%H%M%S")
     safe_extractor = sanitize_filename(extractor)
 
     log_dir.mkdir(parents=True, exist_ok=True)
-    log_path = log_dir / f"{safe_extractor}_{timestamp}.log"
+    log_path = unique_log_path(log_dir, safe_extractor, timestamp)
+    run_suffix = log_path.stem.removeprefix(f"{safe_extractor}_")
+    run_id = run_suffix.replace("_", "T", 1)
 
     logger_name = f"patient_query.{run_id}.{safe_extractor}"
-    base_logger = logging.getLogger(logger_name)
-    base_logger.setLevel(logging.DEBUG)
-    base_logger.propagate = False
-    base_logger.handlers.clear()
+    logger = logging.getLogger(logger_name)
+    logger.setLevel(logging.DEBUG)
+    logger.propagate = False
+    logger.handlers.clear()
 
     formatter = logging.Formatter(
         "%(asctime)s | %(levelname)s | run_id=%(run_id)s | "
@@ -69,8 +83,7 @@ def setup_logging(
     file_handler.setFormatter(formatter)
     file_handler.addFilter(context_filter)
 
-    base_logger.addHandler(console_handler)
-    base_logger.addHandler(file_handler)
+    logger.addHandler(console_handler)
+    logger.addHandler(file_handler)
 
-    adapter = logging.LoggerAdapter(base_logger, {})
-    return LoggingContext(logger=adapter, run_id=run_id, log_path=log_path)
+    return LoggingContext(logger=logger, run_id=run_id, log_path=log_path)
