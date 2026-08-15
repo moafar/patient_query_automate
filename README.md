@@ -2,7 +2,7 @@
 
 Automatización de la extracción de datos desde **Patient Query de Breeze** mediante la interfaz gráfica de Windows.
 
-El proyecto utiliza Python y `pywinauto` para abrir Patient Query, iniciar sesión, seleccionar una consulta configurada, aplicar un filtro de fecha, exportar los resultados en formato `.xls` y cerrar la aplicación.
+El proyecto utiliza Python y `pywinauto` para abrir Patient Query, iniciar sesión, seleccionar una consulta configurada, aplicar un filtro de fecha, exportar los resultados en formato `.xls` y cerrar la aplicación. Para el extractor `gx_ino`, además transfiere el archivo mediante SFTP a `mineriaino` y ejecuta allí el cargador PostgreSQL.
 
 ## Requisitos
 
@@ -24,10 +24,13 @@ patient_query_automate/
 ├── logs/
 ├── tests/
 │   ├── test_export_verification.py
+│   ├── test_gx_remote.py
+│   ├── test_main_gx_delivery.py
 │   └── test_logging_config.py
 ├── .env
 ├── .gitignore
 ├── export_verification.py
+├── gx_remote.py
 ├── logging_config.py
 ├── main.py
 ├── requirements.txt
@@ -51,6 +54,12 @@ Las credenciales se almacenan en un archivo `.env` en la raíz:
 ```env
 PATIENT_QUERY_USERNAME=admin
 PATIENT_QUERY_PASSWORD=CONTRASEÑA
+
+GX_SSH_HOST=192.168.32.53
+GX_SSH_PORT=22
+GX_SSH_USERNAME=USUARIO_SSH
+GX_SSH_PRIVATE_KEY=C:\patient_query_automate\secrets\id_ed25519
+GX_SSH_KNOWN_HOSTS=C:\patient_query_automate\secrets\known_hosts
 ```
 
 El archivo `.env` no se versiona. Los valores de las credenciales no se escriben en los logs.
@@ -85,7 +94,10 @@ Otros extractores disponibles:
 ```powershell
 python main.py --extractor observatorio_espirometria
 python main.py --extractor observatorio_volumenes_pulmonares
+python main.py --extractor gx_ino
 ```
+
+La ejecución de `gx_ino` solo declara éxito cuando la exportación se verificó, el archivo se transfirió y el cargador remoto respondió con código de salida `0`. Los demás extractores no se transfieren y conservan su flujo local.
 
 ## Archivos exportados
 
@@ -158,7 +170,8 @@ El ciclo registra:
 7. solicitud de exportación;
 8. verificación del archivo exportado;
 9. intento de cierre de Patient Query;
-10. resultado global `success` o `failed`.
+10. para `gx_ino`, transferencia SFTP y ejecución del cargador remoto;
+11. resultado global `success` o `failed`.
 
 Las excepciones se registran con traceback.
 
@@ -179,7 +192,7 @@ El flujo principal está protegido por manejo global de excepciones. Patient Que
 
 Códigos de salida:
 
-- `0`: ejecución completada y exportación verificada;
+- `0`: ejecución completada y exportación verificada; para `gx_ino`, también transferencia y carga remota aceptadas;
 - `1`: ejecución fallida.
 
 Esto permite que el Programador de tareas de Windows identifique el resultado de la ejecución.
@@ -199,6 +212,8 @@ Cubren:
 - sanitización del nombre del extractor;
 - aceptación de un archivo exportado estable;
 - rechazo de archivos inexistentes o vacíos.
+- configuración, transferencia atómica y ejecución remota GX;
+- entrega remota exclusiva del extractor `gx_ino` y propagación de errores.
 
 ## Seguridad
 

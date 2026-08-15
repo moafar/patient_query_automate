@@ -12,12 +12,14 @@ from pywinauto import Desktop
 from pywinauto.keyboard import send_keys
 
 from export_verification import wait_for_export_file
+from gx_remote import load_gx_remote_config, transfer_and_load_gx
 from logging_config import setup_logging
 
 
 EXE_PATH = r"C:\Program Files (x86)\MedGraphics\Breeze\DatabaseQuery.exe"
 EXPORT_DIR = Path(r"C:\patient_query_automate\exports")
 EXPORT_TIMEOUT_SECONDS = 120
+GX_EXTRACTOR_NAME = "gx_ino"
 
 
 def phase(phase_name: str) -> dict[str, str]:
@@ -308,6 +310,26 @@ def export_query(extractor_config, logger: logging.LoggerAdapter):
     return full_path, size_bytes
 
 
+def deliver_export(
+    extractor_name: str,
+    exported_path: Path,
+    logger: logging.LoggerAdapter,
+):
+    """Entrega al receptor remoto únicamente las exportaciones GX INO."""
+
+    if extractor_name != GX_EXTRACTOR_NAME:
+        return None
+
+    config = load_gx_remote_config(logger)
+    result = transfer_and_load_gx(exported_path, config, logger)
+    logger.info(
+        "Resultado del cargador GX remoto; response=%s",
+        result.stdout,
+        extra=phase("remote_result"),
+    )
+    return result
+
+
 def close_patient_query(logger: logging.LoggerAdapter):
     logger.info("Cerrando Patient Query", extra=phase("cleanup"))
     window = get_query_window()
@@ -407,6 +429,7 @@ def main() -> int:
         wait_for_update_to_finish(logger)
         configure_query(extractor_config, logger)
         exported_path, exported_size = export_query(extractor_config, logger)
+        deliver_export(args.extractor, exported_path, logger)
         completed = True
         return 0
     except Exception:
