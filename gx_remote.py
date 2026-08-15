@@ -25,6 +25,12 @@ class GxRemoteError(RuntimeError):
     """Indica un fallo de configuración, transferencia o carga remota GX."""
 
 
+def phase(phase_name: str) -> dict[str, str]:
+    """Añade la fase GX al registro de la ejecución principal."""
+
+    return {"phase": phase_name}
+
+
 @dataclass(frozen=True)
 class GxRemoteConfig:
     """Configuración no interactiva del acceso a mineriaino."""
@@ -126,6 +132,34 @@ class GxRemoteResult:
     stdout: str
 
 
+def load_gx_remote_config(
+    logger: logging.Logger,
+    environment: Mapping[str, str] | None = None,
+) -> GxRemoteConfig:
+    """Carga la configuración SSH dentro de la estrategia general de logging."""
+
+    logger.info(
+        "Cargando configuración de transporte GX",
+        extra=phase("remote_configuration"),
+    )
+    try:
+        config = GxRemoteConfig.from_environment(environment)
+    except Exception:
+        logger.exception(
+            "Falló la configuración de transporte GX",
+            extra=phase("remote_failed"),
+        )
+        raise
+
+    logger.info(
+        "Configuración de transporte GX validada; host=%s; port=%s",
+        config.host,
+        config.port,
+        extra=phase("remote_configuration"),
+    )
+    return config
+
+
 def build_remote_command(config: GxRemoteConfig, remote_path: str) -> str:
     """Construye el comando remoto escapando todos los argumentos variables."""
 
@@ -195,6 +229,7 @@ def transfer_and_load_gx(
         "Conectando con mineriaino para transferencia GX; host=%s; port=%s",
         config.host,
         config.port,
+        extra=phase("remote_connection"),
     )
 
     try:
@@ -218,6 +253,13 @@ def transfer_and_load_gx(
 
             _remove_partial_file(sftp, partial_path, logger)
 
+            logger.info(
+                "Iniciando transferencia GX; file=%s; size_bytes=%s",
+                local_path.name,
+                local_path.stat().st_size,
+                extra=phase("remote_upload"),
+            )
+
             try:
                 sftp.put(str(local_path), partial_path, confirm=True)
                 sftp.chmod(partial_path, REMOTE_FILE_MODE)
@@ -236,12 +278,18 @@ def transfer_and_load_gx(
                 raise
 
         logger.info(
-            "Transferencia GX completada; file=%s; size_bytes=%s",
+            "Transferencia GX verificada; file=%s; size_bytes=%s",
             local_path.name,
             local_path.stat().st_size,
+            extra=phase("remote_upload_verified"),
         )
 
         command = build_remote_command(config, remote_path)
+        logger.info(
+            "Iniciando cargador GX remoto; file=%s",
+            local_path.name,
+            extra=phase("remote_execution"),
+        )
         _, stdout_stream, stderr_stream = client.exec_command(
             command,
             timeout=config.command_timeout_seconds,
@@ -251,20 +299,30 @@ def transfer_and_load_gx(
         exit_status = stdout_stream.channel.recv_exit_status()
 
         if exit_status != 0:
-            detail = stderr or stdout or "sin detalle remoto"
             raise GxRemoteError(
                 "El cargador GX remoto terminó con error; "
-                f"exit_status={exit_status}; detail={detail[-2000:]}"
+                f"exit_status={exit_status}"
             )
 
         logger.info(
             "Carga GX remota completada; file=%s; exit_status=0",
             local_path.name,
+            extra=phase("remote_completed"),
         )
         return GxRemoteResult(remote_path=remote_path, stdout=stdout)
     except GxRemoteError:
+        logger.exception(
+            "Falló el transporte o la carga remota GX; file=%s",
+            local_path.name,
+            extra=phase("remote_failed"),
+        )
         raise
     except Exception as error:
+        logger.exception(
+            "Falló el transporte o la carga remota GX; file=%s",
+            local_path.name,
+            extra=phase("remote_failed"),
+        )
         raise GxRemoteError(
             f"Falló la transferencia o ejecución remota GX: {error}"
         ) from error
