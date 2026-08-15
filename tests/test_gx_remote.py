@@ -20,6 +20,7 @@ from gx_remote import (
     GxRemoteConfig,
     GxRemoteError,
     build_remote_command,
+    load_gx_remote_config,
     transfer_and_load_gx,
 )
 
@@ -126,6 +127,34 @@ class GxRemoteConfigTests(unittest.TestCase):
             self.assertIn("'/srv/data/incoming/GX INO.xls'", command)
             self.assertIn("src.pipeline_load_gx_excel", command)
 
+    def test_configuration_uses_explicit_logging_phases(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            private_key = root / "id_rsa"
+            known_hosts = root / "known_hosts"
+            private_key.write_text("test", encoding="utf-8")
+            known_hosts.write_text("test", encoding="utf-8")
+            logger = MagicMock()
+
+            load_gx_remote_config(
+                logger=logger,
+                environment={
+                    "GX_SSH_HOST": "192.168.32.53",
+                    "GX_SSH_USERNAME": "rom",
+                    "GX_SSH_PRIVATE_KEY": str(private_key),
+                    "GX_SSH_KNOWN_HOSTS": str(known_hosts),
+                },
+            )
+
+            phases = [
+                call.kwargs["extra"]["phase"]
+                for call in logger.info.call_args_list
+            ]
+            self.assertEqual(
+                phases,
+                ["remote_configuration", "remote_configuration"],
+            )
+
 
 class GxRemoteTransferTests(unittest.TestCase):
     @patch("gx_remote.paramiko.SSHClient")
@@ -146,7 +175,7 @@ class GxRemoteTransferTests(unittest.TestCase):
             result = transfer_and_load_gx(
                 local_file=local_file,
                 config=config,
-                logger=MagicMock(),
+                logger=(logger := MagicMock()),
             )
 
             self.assertEqual(result.stdout, "LOAD_OK")
@@ -158,6 +187,20 @@ class GxRemoteTransferTests(unittest.TestCase):
             client.connect.assert_called_once()
             client.exec_command.assert_called_once()
             client.close.assert_called_once()
+            phases = [
+                call.kwargs["extra"]["phase"]
+                for call in logger.info.call_args_list
+            ]
+            self.assertEqual(
+                phases,
+                [
+                    "remote_connection",
+                    "remote_upload",
+                    "remote_upload_verified",
+                    "remote_execution",
+                    "remote_completed",
+                ],
+            )
 
     @patch("gx_remote.paramiko.SSHClient")
     def test_remote_loader_failure_is_propagated(self, client_class):
@@ -175,14 +218,19 @@ class GxRemoteTransferTests(unittest.TestCase):
             stderr = FakeStream(b"validation failed")
             client.exec_command.return_value = (MagicMock(), stdout, stderr)
 
-            with self.assertRaisesRegex(GxRemoteError, "validation failed"):
+            logger = MagicMock()
+            with self.assertRaisesRegex(GxRemoteError, "exit_status=1"):
                 transfer_and_load_gx(
                     local_file=local_file,
                     config=config,
-                    logger=MagicMock(),
+                    logger=logger,
                 )
 
             client.close.assert_called_once()
+            self.assertEqual(
+                logger.exception.call_args.kwargs["extra"]["phase"],
+                "remote_failed",
+            )
 
 
 if __name__ == "__main__":
