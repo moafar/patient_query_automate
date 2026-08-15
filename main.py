@@ -315,16 +315,50 @@ def close_patient_query(logger: logging.LoggerAdapter):
     logger.info("Patient Query cerrado", extra=phase("cleanup"))
 
 
-def safe_close_patient_query(logger: logging.LoggerAdapter):
+def safe_close_patient_query(
+    logger: logging.LoggerAdapter,
+    process: subprocess.Popen | None = None,
+):
     try:
         close_patient_query(logger)
+
+        if process is not None:
+            process.wait(timeout=10)
+
+        return
     except Exception:
         logger.warning(
-            "No fue posible confirmar el cierre de Patient Query",
+            "No fue posible cerrar Patient Query mediante la interfaz",
             exc_info=True,
             extra=phase("cleanup"),
         )
 
+    if process is None or process.poll() is not None:
+        return
+
+    logger.warning(
+        "Forzando el cierre del proceso; pid=%s",
+        process.pid,
+        extra=phase("cleanup"),
+    )
+    process.terminate()
+
+    try:
+        process.wait(timeout=10)
+    except subprocess.TimeoutExpired:
+        logger.warning(
+            "El proceso no respondió; aplicando cierre forzado; pid=%s",
+            process.pid,
+            extra=phase("cleanup"),
+        )
+        process.kill()
+        process.wait(timeout=5)
+
+    logger.info(
+        "Proceso de Patient Query cerrado; pid=%s",
+        process.pid,
+        extra=phase("cleanup"),
+    )
 
 def parse_args():
     parser = argparse.ArgumentParser()
@@ -341,7 +375,7 @@ def main() -> int:
     logging_context = setup_logging(args.extractor)
     logger = logging_context.logger
     started_at = time.monotonic()
-    patient_query_launched = False
+    patient_query_process = None
     completed = False
     exported_path = None
     exported_size = None
@@ -368,8 +402,7 @@ def main() -> int:
             extra=phase("configuration"),
         )
 
-        launch_patient_query(logger)
-        patient_query_launched = True
+        patient_query_process = launch_patient_query(logger)
         login(username, password, logger)
         wait_for_update_to_finish(logger)
         configure_query(extractor_config, logger)
@@ -383,8 +416,8 @@ def main() -> int:
         )
         return 1
     finally:
-        if patient_query_launched:
-            safe_close_patient_query(logger)
+        if patient_query_process is not None:
+            safe_close_patient_query(logger, patient_query_process)
 
         duration = time.monotonic() - started_at
         if completed:
