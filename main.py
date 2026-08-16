@@ -20,6 +20,8 @@ EXE_PATH = r"C:\Program Files (x86)\MedGraphics\Breeze\DatabaseQuery.exe"
 EXPORT_DIR = Path(r"C:\patient_query_automate\exports")
 EXPORT_TIMEOUT_SECONDS = 120
 GX_EXTRACTOR_NAME = "gx_ino"
+LOGIN_CONFIRMATION_ATTEMPTS = 3
+LOGIN_CONFIRMATION_TIMEOUT_SECONDS = 5
 
 
 def phase(phase_name: str) -> dict[str, str]:
@@ -71,6 +73,22 @@ def launch_patient_query(logger: logging.LoggerAdapter):
     return process
 
 
+def wait_for_window_to_close(window, timeout: int) -> bool:
+    start = time.monotonic()
+
+    while time.monotonic() - start < timeout:
+        if not window.exists(timeout=0):
+            return True
+        time.sleep(0.25)
+
+    return not window.exists(timeout=0)
+
+
+def visible_window_titles() -> list[str]:
+    desktop = Desktop(backend="uia")
+    return [window.window_text() for window in desktop.windows() if window.window_text()]
+
+
 def login(username, password, logger: logging.LoggerAdapter):
     logger.info("Esperando ventana de inicio de sesión", extra=phase("login"))
 
@@ -83,9 +101,41 @@ def login(username, password, logger: logging.LoggerAdapter):
 
     edits[0].set_text(username)
     edits[1].set_text(password)
-    window.child_window(title="Aceptar", control_type="Button").click_input()
+    accept_button = window.child_window(title="Aceptar", control_type="Button")
 
-    logger.info("Credenciales enviadas", extra=phase("login"))
+    for attempt in range(1, LOGIN_CONFIRMATION_ATTEMPTS + 1):
+        window.set_focus()
+        accept_button.click()
+        logger.info(
+            "Confirmación de inicio de sesión enviada; attempt=%s",
+            attempt,
+            extra=phase("login"),
+        )
+
+        if wait_for_window_to_close(window, LOGIN_CONFIRMATION_TIMEOUT_SECONDS):
+            logger.info("Inicio de sesión confirmado", extra=phase("login"))
+            return
+
+        if attempt < LOGIN_CONFIRMATION_ATTEMPTS:
+            logger.warning(
+                "La ventana de inicio de sesión sigue visible; se reintentará; "
+                "attempt=%s",
+                attempt,
+                extra=phase("login"),
+            )
+
+    titles = visible_window_titles()
+    logger.error(
+        "No fue posible confirmar el inicio de sesión; attempts=%s; "
+        "visible_windows=%s",
+        LOGIN_CONFIRMATION_ATTEMPTS,
+        titles,
+        extra=phase("login"),
+    )
+    raise TimeoutError(
+        "La ventana 'Iniciar sesión' continuó visible después de "
+        f"{LOGIN_CONFIRMATION_ATTEMPTS} intentos."
+    )
 
 
 def wait_for_update_to_finish(logger: logging.LoggerAdapter):
