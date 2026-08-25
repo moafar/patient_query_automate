@@ -2,6 +2,8 @@
 cd /d C:\patient_query_automate
 
 if not exist logs mkdir logs
+taskkill /F /IM MusNotification.exe >nul 2>&1
+taskkill /F /IM MusNotificationUx.exe >nul 2>&1
 
 call .venv\Scripts\activate.bat
 

@@ -180,35 +180,40 @@ def select_query(window, query_name, logger: logging.LoggerAdapter):
         extra=phase("query_selection"),
     )
 
-    query_combo = window.child_window(auto_id="5", control_type="ComboBox")
-    query_combo.set_focus()
+    win32_window = Desktop(backend="win32").window(
+        title="Consultar paciente"
+    )
+    win32_window.wait("visible enabled", timeout=60)
 
-    try:
-        query_combo.select(query_name)
-        time.sleep(1)
-        logger.info(
-            "Consulta seleccionada mediante UI Automation",
-            extra=phase("query_selection"),
+    query_combo = win32_window.child_window(
+        control_id=5,
+        class_name="ThunderRT6ComboBox",
+    )
+
+    available_queries = [
+        value.strip()
+        for value in query_combo.item_texts()
+        if value.strip()
+    ]
+
+    if query_name not in available_queries:
+        raise RuntimeError(
+            f"La consulta {query_name!r} no existe en Patient Query."
         )
-        return
-    except Exception:
-        logger.warning(
-            "Falló la selección directa; se intentará selección por escritura",
-            exc_info=True,
-            extra=phase("query_selection"),
-        )
 
-    edits = query_combo.descendants(control_type="Edit")
-    if not edits:
-        raise RuntimeError("No se encontró el campo interno del combo de consulta.")
-
-    edits[0].set_text(query_name)
-    time.sleep(0.5)
-    query_combo.type_keys("{ENTER}")
+    query_combo.select(query_name)
     time.sleep(1)
 
+    selected_query = query_combo.window_text().strip()
+
+    if selected_query != query_name:
+        raise RuntimeError(
+            f"No se pudo verificar la selección de {query_name!r}; "
+            f"valor actual={selected_query!r}."
+        )
+
     logger.info(
-        "Consulta seleccionada mediante escritura",
+        "Consulta seleccionada y verificada mediante Win32",
         extra=phase("query_selection"),
     )
 
@@ -227,6 +232,7 @@ def get_value_edits(window):
     ]
     return sorted(value_edits, key=lambda edit: edit.rectangle().top)
 
+
 def set_visit_date_operator(operator: str, logger) -> None:
     window = Desktop(backend="win32").window(title="Consultar paciente")
 
@@ -242,6 +248,7 @@ def set_visit_date_operator(operator: str, logger) -> None:
         operator,
         extra={"phase": "query_configuration"},
     )
+
 
 def configure_query(extractor_config, logger: logging.LoggerAdapter):
     query_name = extractor_config["query_name"]
@@ -268,6 +275,9 @@ def configure_query(extractor_config, logger: logging.LoggerAdapter):
         raise RuntimeError("No se encontraron campos de valor para filtros.")
 
     value_edits[0].set_text(visit_date_from)
+    value_edits[0].click_input()
+    value_edits[0].type_keys("{TAB}")
+    time.sleep(0.5)
     window.child_window(title="Guardar", control_type="Button").click_input()
     time.sleep(2)
 

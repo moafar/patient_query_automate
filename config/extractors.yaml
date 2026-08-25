@@ -13,6 +13,6 @@ extractors:
     visit_date_from: "06/19/2026"
 
   gx_ino:
-    query_name: "GX INO"
+    query_name: "OBSERVATORIO-GX"
     visit_date_from: "yesterday"
     visit_date_operator: ">"

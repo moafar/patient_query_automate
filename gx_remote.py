@@ -299,9 +299,10 @@ def transfer_and_load_gx(
         exit_status = stdout_stream.channel.recv_exit_status()
 
         if exit_status != 0:
+            remote_output = stderr or stdout or "(sin salida)"
             raise GxRemoteError(
                 "El cargador GX remoto terminó con error; "
-                f"exit_status={exit_status}"
+                f"exit_status={exit_status}; remote_output={remote_output}"
             )
 
         logger.info(
